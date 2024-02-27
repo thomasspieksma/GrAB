@@ -8,7 +8,7 @@ We include three main folders:\
 \
 (ii) Ionization, based on Section 5 and 6 in [1], yet see earlier work (arXiv:2112.14777, arXiv:2206.01212). Two separate codes to calculate the energy losses by ionization on eccentric or inclined orbits.\
 \
-(iii) Resonances, based on [2]. Two separate codes to calculate the overlap integrals on eccentric or inclined orbits. In addition, a python script to calculate the evolution of the system using dimensionless variables.
+(iii) Resonances, based on [2]. Two separate codes to calculate the overlap integrals on eccentric or inclined orbits. To include energy losses by ionization, use the files in the "Data" folder, which have precomputed values for the 211 and 322 state. In addition, a python script to calculate the evolution of the system using dimensionless variables.
 # COMPILING
 All c++ codes can be compiled as:
 <pre><code>g++ -Wall -I/opt/homebrew/Cellar/gsl/2.7.1/include -c XXX.cpp
