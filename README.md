@@ -11,13 +11,13 @@ We include three main folders:\
 (iii) Resonances, based on [2]. Two separate codes to calculate the overlap integrals on eccentric or inclined orbits. In addition, a python script to calculate the evolution of the system using dimensionless variables.\
 # COMPILING
 \
-c++ codes can generally be compiled as:\
+All c++ codes can be compiled as:\
 \
 g++ -Wall -I/opt/homebrew/Cellar/gsl/2.7.1/include -c XXX.cpp\
 \
 g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas\
 \
-./a.out\
+./a.out
 # QUESTIONS
-blabla
+For any questions, feedback or suggestions, please email <a href="mailto:thomas.spieksma@nbi.ku.dk">thomas.spieksma@nbi.ku.dk</a> or gimmytomas@gmail.com
 # CITING
