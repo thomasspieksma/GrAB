@@ -538,7 +538,7 @@ int main(int argc, const char * argv[]) {
     
     std::ofstream file;
     
-    file.open ("211_e_0.txt"); // Path to where you want to save your file.
+    file.open ("211_e_04.txt"); // Path to where you want to save your file.
     
     IonizationRates Rate;
     
@@ -559,7 +559,7 @@ int main(int argc, const char * argv[]) {
     
     double alpha = 0.2; // Gravitational fine-structure constant (Default: 0.2).
     
-    double e = 0.0; // Eccentricity.
+    double e = 0.4; // Eccentricity.
         
     double McOverM = 0.01; // Cloud's mass (Default: 1% of the BH mass).
     

@@ -331,7 +331,7 @@ void Resonance (gsl_integration_workspace * w, int nprime, int lprime, int mprim
             if (include_ionization == true && R_resonance > 0)
             {
                 std::ifstream file;
-                file.open("322_ion.txt");
+                file.open("/Data/211_ion.txt.txt");
                 
                 std::string line1, line2;
                 double R1, chi1, chi2, Pion_Over_Pgw11, Pion_Over_Pgw12, Pion_Over_Pgw21, Pion_Over_Pgw;
