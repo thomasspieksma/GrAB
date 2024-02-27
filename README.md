@@ -22,8 +22,7 @@ g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas
 For any questions, feedback or suggestions, please send an email to <a href="mailto:thomas.spieksma@nbi.ku.dk">thomas.spieksma@nbi.ku.dk</a> and/or <a href="mailto:gimmytomas@gmail.com">gimmytomas@gmail.com</a>
 # CITING
 If you make use of this code, please consider citing the companion paper using the CITATION.bib template:
-<code> 
-@article{Tomaselli:2023ysb,
+<pre><code> @article{Tomaselli:2023ysb,
     author = "Tomaselli, Giovanni Maria and Spieksma, Thomas F. M. and Bertone, Gianfranco",
     title = "{Dynamical friction in gravitational atoms}",
     eprint = "2305.15460",
