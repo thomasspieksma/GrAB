@@ -1,4 +1,4 @@
-# GrAB (GRavitational Atoms in Binaries)
+# GrAB (Gravitational Atoms in Binaries)
 # Description
 This is a repository containing various codes used in arXiv:2305.15460 [1] and arXiv:XXXX.XXXXX [2] to study gravitational atoms in binary systems. 
 
