@@ -1,5 +1,5 @@
 # GrAB
-
+# DESCRIPTION
 This is a repository containing various codes used in arXiv:2305.15460 [1] and arXiv:XXXX.XXXXX [2] to study gravitational atoms in binary systems. 
 
 We include three main folders:\
@@ -17,4 +17,6 @@ c++ codes can generally be compiled as:\
 g++ -Wall -I/opt/homebrew/Cellar/gsl/2.7.1/include -c XXX.cpp\
 g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas\
 ./a.out\
-
+# QUESTIONS
+blabla
+# CITING
