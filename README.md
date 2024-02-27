@@ -12,6 +12,7 @@ We include three main folders:\
 \
 \
 \
+### COMPILING
 c++ codes can generally be compiled as:\
 g++ -Wall -I/opt/homebrew/Cellar/gsl/2.7.1/include -c XXX.cpp\
 g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas\
