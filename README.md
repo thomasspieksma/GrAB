@@ -20,7 +20,7 @@ g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas
 # QUESTIONS
 For any questions, feedback or suggestions, please send an email to <a href="mailto:thomas.spieksma@nbi.ku.dk">thomas.spieksma@nbi.ku.dk</a> and/or <a href="mailto:gimmytomas@gmail.com">gimmytomas@gmail.com</a>
 # CITING
-If you make use of this code, please consider citing the companion paper using the CITATION.bib template:
+If you make use of this code, please consider citing the corresponding papers:
 <pre><code> @article{Tomaselli:2023ysb,
     author = "Tomaselli, Giovanni Maria and Spieksma, Thomas F. M. and Bertone, Gianfranco",
     title = "{Dynamical friction in gravitational atoms}",
@@ -32,4 +32,17 @@ If you make use of this code, please consider citing the companion paper using t
     volume = "07",
     pages = "070",
     year = "2023"
+}
+  
+@article{Tomaselli:2024XXX,
+    author = "Tomaselli, Giovanni Maria and Spieksma, Thomas F. M. and Bertone, Gianfranco",
+    title = "{The resonant history of gravitational atoms in black hole binaries}",
+    eprint = "24XX.XXXXX",
+    archivePrefix = "arXiv",
+    primaryClass = "gr-qc",
+    doi = "XXXXXXXXX",
+    journal = "XXXX",
+    volume = "XX",
+    pages = "XXX",
+    year = "2024"
 }</code></pre>
