@@ -9,8 +9,6 @@ We include three main folders:\
 (ii) Ionization, based on Section 5 and 6 in [1], yet see earlier work (arXiv:2112.14777, arXiv:2206.01212). Two separate codes to calculate the energy losses by ionization on eccentric or inclined orbits.\
 \
 (iii) Resonances, based on [2]. Two separate codes to calculate the overlap integrals on eccentric or inclined orbits. In addition, a python script to calculate the evolution of the system using dimensionless variables.\
-\
-\
 # COMPILING
 \
 c++ codes can generally be compiled as:\
