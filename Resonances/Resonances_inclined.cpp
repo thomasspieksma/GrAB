@@ -11,7 +11,7 @@
 //
 // Ref. [1]: G. M. Tomaselli, T. F. M. Spieksma, and G. Bertone, "The resonant history of gravitational atoms in black hole binaries".
 //
-// Specifically, TBA
+// Specifically, Section 3.
 //
 // Ref. [2]: G. M. Tomaselli, T. F. M. Spieksma, and G. Bertone, "Dynamical friction in gravitational atoms",
 // JCAP 07 (2023) 070, arXiv:2305.15460 [gr-qc]
@@ -279,15 +279,6 @@ double OmegaKepler (double R_star, double q, double rs)
     return sqrt(rs/(2*R_star*R_star*R_star));
 }
 
-// -----------------------------------------------
-// REMOVE
-// -----------------------------------------------
-
-double eccentricity (double ecc)
-{
-    return (1.0+73.0/24.0*pow(ecc,2.0)+37.0/96.0*pow(ecc,4.0))/pow(1.0-pow(ecc,2.0), 7.0/2.0);
-}
-
 
 // --------------------------------------------------------------
 // Main function to calculate coupling strength (Eq. 2.6 in [1]).
@@ -303,8 +294,6 @@ void Resonance (gsl_integration_workspace * w, int nprime, int lprime, int mprim
     double I_r_result, I_Omega_result, D;
         
     double eta, gamma, z;
-    
-    double Gamma, total;
         
     double B, Delta_t_float, exponent;
     
@@ -378,12 +367,8 @@ void Resonance (gsl_integration_workspace * w, int nprime, int lprime, int mprim
             Delta_t_float = B / sqrt(gamma*abs(g)); // See (3.24) in [1].
                         
             exponent = gamma * Delta_t_float / Omega_resonance;
-            
-//            std::cout << "(B = " << B << ") ";
-//            std::cout << "(gamma = " << gamma << ") ";
-//
-            std::cout << "Delta_t_float (yrs) = " << Delta_t_float * 3.12436 * pow(10,-9) << " "; // In years.
-//            std::cout << "(exponent = " << exponent << ") ";
+
+            std::cout << "Delta_t_float (yrs) = " << Delta_t_float * 3.12436 * pow(10,-9) << " "; // In years with M = 10^4 M_{\odot}.
                                     
             for (int l_star = std::max(abs(g),abs(lprime-l)); l_star <= l+lprime; l_star++)
             {
@@ -420,31 +405,11 @@ void Resonance (gsl_integration_workspace * w, int nprime, int lprime, int mprim
             
             z = eta*eta/(gamma*abs(g));
             
-            Gamma = 9.8596281 * pow(10,-9);
-            
-            //std::cout << 2*M_PI*z << " ";
-            
             std::cout << "B=" << B << " ";
-            
-            std::cout << "z=" << z << " ";
-            
+                        
             std::cout << "2Pi*z*B=" << 2*M_PI*z*B << " ";
             
             std::cout << "D=" << exponent << " ";
-            
-            std::cout << "eta=" << eta << " ";
-
-            //std::cout << "TOTAL=" << Gamma/(sqrt(gamma*abs(g))*z*B) << " ";
-//
-//            std::cout << "sqrt(z)*B=" << sqrt(z)*B << " ";
-//
-//            std::cout << "f(0.99)=" << eccentricity(0.99) << " ";
-//
-//            std::cout << "f(0.9)=" << eccentricity(0.9) << " ";
-//
-//            std::cout << "f(0.8)=" << eccentricity(0.8) << " ";
-            
-            
             
             std::cout << " " << " " << " " << " ";
         }

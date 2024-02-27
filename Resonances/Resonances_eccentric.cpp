@@ -11,10 +11,11 @@
 //
 // G. M. Tomaselli, T. F. M. Spieksma, and G. Bertone, "The resonant history of gravitational atoms in black hole binaries".
 //
+// Specifically, Section 3.
+//
 // Ref. [2]: G. M. Tomaselli, T. F. M. Spieksma, and G. Bertone, "Dynamical friction in gravitational atoms",
 // JCAP 07 (2023) 070, arXiv:2305.15460 [gr-qc]
 //
-// Specifically, TBA
 // ------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------
 
@@ -255,9 +256,9 @@ double OmegaKepler (double R_star, double q, double rs)
     return sqrt(rs/(2*R_star*R_star*R_star));
 }
 
-// -----------------------------------------------
-// REMOVE
-// -----------------------------------------------
+// -----------------------------------
+// f(\varepsilon) (Eq. (3.15) in [1]).
+// -----------------------------------
 
 double eccentricity (double ecc)
 {
@@ -342,18 +343,16 @@ double integrand_eta_g_cos (double M, void * p)
         double e = (params->e);
         int g_pick = (params->g_pick);
         double rs = (params->rs);
-    
+        
     double DeltaE = Energy_bound(nprime,lprime,mprime,alpha,rs,m) - Energy_bound(n,l,m,alpha,rs,m);
 
-    double Omega_resonance, R_resonance, gamma;
+    double Omega_resonance, R_resonance;
     
     double I_r_result, I_Omega_result;
 
     double E = EccentricAnomaly(s,M,e);
     
     double R_star, phi_star = 0;
-    
-    double B, Delta_t_float, exponent, z;
     
     double result = 0;
     
@@ -364,14 +363,17 @@ double integrand_eta_g_cos (double M, void * p)
             
             Omega_resonance = abs(DeltaE/g);
                         
-            if (!std::isinf(Omega_resonance)) // Makes sure the g = 0 entries are filtered out.
+            if (!std::isinf(Omega_resonance))
             {
+                
+                R_resonance = pow( rs*(1+q)/(2*Omega_resonance*Omega_resonance), 1./3);
                 
                 I_Omega_result = I_Omega(lprime,l_star,l,mprime,m-mprime,m);
                                 
-                if (abs(I_Omega_result) > 1e-15) // Check if the angular integral is zero, to speed up the code.
+                if (abs(I_Omega_result) > 1e-15)
                 {
                     R_star = R_resonance * (1 - e * cos(E));
+                    
                     if (E < M_PI) phi_star = 2 * atan( sqrt( (1+e)*pow(tan(E/2),2)/(1-e) ) );
                     else phi_star = 2 * M_PI - 2 * atan( sqrt( (1+e)*pow(tan(E/2),2)/(1-e) ) );
                     
@@ -379,19 +381,16 @@ double integrand_eta_g_cos (double M, void * p)
                     {
                         I_r_result = I_r(w,lprime,l_star,l,nprime,n,R_star,alpha,rs);
                     }
-                    
                     if (l_star == 1)
                     {
                         I_r_result = I_r_dipole(w,lprime,l_star,l,nprime,n,R_star,alpha,rs);
                     }
-                    
-                    result += (4*M_PI * alpha * q) * I_r_result * I_Omega_result * cos((abs(g))*(phi_star-M)) / (2*l_star+1); // See e.g. Eq. (3.8) in [2].
+                    result += (4*M_PI * alpha * q) * I_r_result * I_Omega_result * cos((abs(g))*(phi_star-M)) / (2*l_star+1);
                                         
                 }
-                
-                
             }
         }
+        
     }
         
     return result;
@@ -493,10 +492,6 @@ double Resonance (gsl_integration_workspace * w, gsl_root_fsolver * s, double np
 
     
     gsl_integration_qawo(&integrand_sin, 0, absoluteError, relativeError, 1, w, wf_sin, &integral_sin, &error_sin);
-    
-
-    //std::cout << " " << " " << " " << " ";
-    
 
      return 2*(integral_cos-integral_sin);
 }
@@ -517,11 +512,7 @@ ResTotal Rates (gsl_integration_workspace * w, gsl_root_fsolver * s, int nprime,
     
     double overlap;
     
-    double ingredient1;
-    
-    double ingredient2;
-    
-    double totalus,z, gamma,Omega_resonance,R_resonance,B,Delta_t_float,exponent;
+    double z,gamma,Omega_resonance,B,Delta_t_float,exponent;
     
     double McOverM = 0.01;
 
@@ -534,57 +525,24 @@ ResTotal Rates (gsl_integration_workspace * w, gsl_root_fsolver * s, int nprime,
     std::cout << "eta^2 = " << overlap*overlap << std::endl;
     
     double DeltaE = Energy_bound(nprime,lprime,mprime,alpha,rs,m) - Energy_bound(n,l,m,alpha,rs,m);
-    
-    double Gamma;
-    
-    Gamma = 1.976 * pow(10,-14);
 
     Omega_resonance = abs(DeltaE/g_pick);
-
-    R_resonance = pow( rs*(1+q)/(2*Omega_resonance*Omega_resonance), 1./3);
 
     gamma = (96/5) * q * pow(0.5*Omega_resonance, 5./3) * pow(Omega_resonance,2) / pow(1+q, 1./3); // See Eq. (3.6) in [1].
 
     z = overlap*overlap/(gamma*abs(g_pick));
 
-    B = - 3 * McOverM * pow(Omega_resonance,4./3) * pow(0.5*(1+q),1./3) * g_pick / (q * alpha * sqrt(gamma/abs(g_pick))); // See (3.23) in [1].
+    B = - 3 * McOverM * pow(Omega_resonance,4./3) * pow(0.5*(1+q),1./3) * -g_pick / (q * alpha * sqrt(gamma/abs(g_pick))); // See (3.23) in [1].
 
     Delta_t_float = B / sqrt(gamma*abs(g_pick));
 
     exponent = gamma * Delta_t_float / Omega_resonance;
-    
-    ingredient1 = Omega_resonance/gamma;
-    
-    ingredient2 = Delta_t_float/ingredient1;
-    
-    std::cout << "(Delta_t_float = " << Delta_t_float * 3.12436 * pow(10,-9) << ") "; // In years.
-    
-    //std::cout << "(Delta_t_float2 = " << Delta_t_float * 3.12436 * pow(10,-9)/ eccentricity(0.35) << ") "; // In years.
-
-    
-    //std::cout << "ingredient1=" << ingredient1 << " ";
-    
-    //std::cout << "ingredient2=" << ingredient2 << " ";
-    
-    std::cout << "TOTAL=" << Gamma/(sqrt(gamma*abs(g_pick))*z*B) << " ";
-//
-    //std::cout << "Delta_t_float =" << Delta_t_float << " " << std::endl;
+        
+    std::cout << "(Delta_t_float = " << Delta_t_float * 3.12436 * pow(10,-9) << ") "; // In years with M = 10^4 M_{\odot}..
     
     std::cout << "2Pi*z*B=" << 2*M_PI*z*B << " ";
-    
-    std::cout << "z=" << z << " ";
 
-    
     std::cout << "D=" << exponent << " ";
-
-    std::cout << "sqrt(z)*B=" << sqrt(z)*B << " ";
-    
-    //std::cout << "f(0.99)=" << eccentricity(0.99) << " ";
-
-    //std::cout << "f(0.9)=" << eccentricity(0.9) << " ";
-
-    //std::cout << "f(0.8)=" << eccentricity(0.8) << " ";
-
 
     return result;
 }
@@ -608,7 +566,7 @@ int main(int argc, const char * argv[]) {
         
         std::ofstream file;
     
-        file.open ("Testdata_g_pick7.txt");
+        file.open ("Testdata_g_pick3.txt");
     
         ResTotal Rate;
     
@@ -635,7 +593,7 @@ int main(int argc, const char * argv[]) {
     
         int mprime = -1;
     
-        int g_pick = 4; // This is the g you pick, g = \delta m corresponds to the strongest resonance.
+        int g_pick = 3; // This is the g you pick, g = \delta m corresponds to the strongest resonance.
         
         // ---------------------------------------------------------------------------------------------------------------------------------------------
         // ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -645,11 +603,10 @@ int main(int argc, const char * argv[]) {
         // Loop over the desired eccentricities.
         // -------------------------------------
     
-        for (int i = 49; i < 51; i++)
+        for (int i = 20; i < 30; i++)
         {
             
-            Rate = Rates(w,s,nprime,lprime,mprime,n,l,m, alpha, q, i/100.0, g_pick, 1.0);
-            
+            Rate = Rates(w,s,nprime,lprime,mprime,n,l,m,alpha,q,i/100.0,g_pick,1.0);
             
             std::cout << "e = " << i/100.0 << std::endl;
 

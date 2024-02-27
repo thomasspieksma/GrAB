@@ -11,7 +11,6 @@
 #
 # Ref. [1]: G. M. Tomaselli, T. F. M. Spieksma, and G. Bertone, "The resonant history of gravitational atoms in black hole binaries".
 #
-# Specifically, TBA
 # -----------------------------------------------------------------------------------------------------------------------------------
 # -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,11 +39,13 @@ Z = 0.01 # See Eq. (3.8) in [1].
 
 B = 1000 # See Eq. (3.23) in [1].
 
-C = 3*B * 0.25 # See Eq. (3.23) in [1].
+D = 4.16 # See Eq. (3.32) in [1].
+
+C = B/D # See Eq. (3.23) in [1].
 
 Deltam_g = 1 # See Fig. 6 in [1].
 
-Gamma = 0 # Equals 1/\tau_decay, see Fig. 9 in [1].
+Gamma = 1.5668e-7 # Equals 1/\tau_decay, see Fig. 9 in [1].
 
 init_epsilon_squared = 0.3 # Initial eccentricity.
 
