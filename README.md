@@ -12,7 +12,7 @@ Contains two codes to calculate energy losses to other bound and unbound states 
 Contains two codes to calculate energy losses by ionization on eccentric and equatorial orbits or inclined and quasi-circular orbits.\
 \
 \
-(iii) *Resonances* see [2] (yet also earlier work (arXiv:1804.03208, arXiv:1912.04932)).\
+(iii) *Resonances*, see [2] (yet also earlier work (arXiv:1804.03208, arXiv:1912.04932)).\
 Contains two codes to calculate the overlap integrals on eccentric and equatorial orbits or inclined and quasi-circular orbits. To include energy losses by ionization, we make use of the files in the "Data" folder, which have precomputed values for the 211 and 322 state.\
 Additionally, we include a python script that evolves the nonlinear system using dimensionsless variables (see Section 3 of [2]).
 # Compiling
