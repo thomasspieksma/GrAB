@@ -19,5 +19,5 @@ g++ XXX.o -L/opt/homebrew/Cellar/gsl/2.7.1/lib -lgsl -lgslcblas\
 \
 ./a.out
 # QUESTIONS
-For any questions, feedback or suggestions, please email <a href="mailto:thomas.spieksma@nbi.ku.dk">thomas.spieksma@nbi.ku.dk</a> or gimmytomas@gmail.com
+For any questions, feedback or suggestions, please send an email to <a href="mailto:thomas.spieksma@nbi.ku.dk">thomas.spieksma@nbi.ku.dk</a> and/or <a href="mailto:gimmytomas@gmail.com">gimmytomas@gmail.com</a>
 # CITING
