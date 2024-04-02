@@ -1,6 +1,6 @@
 # GrAB (Gravitational Atoms in Binaries)
 # Description
-This is a repository containing various codes used in <a href="https://arxiv.org/abs/2305.15460">arXiv:2305.15460</a> [1] and <a href="https://arxiv.org/abs/XXXX.XXXXX">arXiv:XXXX.XXXXX</a> [2] to study gravitational atoms in binary systems. 
+This is a repository containing various codes used in <a href="https://arxiv.org/abs/2305.15460">arXiv:2305.15460</a> [1] and <a href="https://arxiv.org/abs/2403.03147">arXiv:2403.03147</a> [2] to study gravitational atoms in binary systems. 
 
 We include three main folders:\
 \
@@ -40,15 +40,12 @@ If you make use of this code, please consider citing the corresponding papers,
     year = "2023"
 }
   
-@article{Tomaselli:2024XXX,
+@article{Tomaselli:2024bdd,
     author = "Tomaselli, Giovanni Maria and Spieksma, Thomas F. M. and Bertone, Gianfranco",
     title = "{The resonant history of gravitational atoms in black hole binaries}",
-    eprint = "24XX.XXXXX",
+    eprint = "2403.03147",
     archivePrefix = "arXiv",
     primaryClass = "gr-qc",
-    doi = "XXXXXXXXX",
-    journal = "XXXX",
-    volume = "XX",
-    pages = "XXX",
+    month = "3",
     year = "2024"
 }</code></pre>
